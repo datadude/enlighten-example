@@ -1,0 +1,20 @@
+%nav.top-bar{role: 'navigation', 'data-topbar'=>'', 'data-options'=>"is_hover: false"}
+  %ul.title-area
+    / Title Area
+    %li.name
+      %h1
+        %a{:href => "/"}
+          Enphase Enlighten Data Browser
+    %li.toggle-topbar.menu-icon
+      %a{:href => "#"}
+        %span menu
+  %section.top-bar-section
+    / Right Nav Section
+    %ul.right
+      %li.divider
+        %li
+          = link_to('Stats', systems_detail_path)
+        %li
+          = link_to('Power Graph', systems_path(:action=>'graph'))
+/ End Top Bar
+/ End Navigation

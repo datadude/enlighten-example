@@ -1,0 +1,123 @@
+
+.enlighten
+  .row
+    .small-12.columns
+      %h1
+        System Stats
+  .row
+    .large-4.columns
+      .panel
+        %h3
+          System Summary:
+        %dl
+          -@summary.each_pair do |k,v|
+            %dt
+              #{k}
+            %dd
+              #{v}
+    .large-4.columns
+      .panel
+        %h3
+          Envoys:
+        %dl
+          %dt
+            system_id
+          %dd
+            #{@envoys.system_id}
+          %dt
+            envoys
+          %dd
+            %dl
+              -@envoys.envoys.each do |envoy|
+                -envoy.each_pair do |k,v|
+                  %dt
+                    #{k}
+                  %dd
+                    #{v}
+    .large-4.columns
+      .panel
+        %h3
+          Monthly Production:
+        %dl
+          -@production.each_pair do |k,v|
+            %dt
+              #{k}
+            %dd
+              #{v}
+  .row
+    .large-4.columns
+      .panel
+        %h3
+          Inventory:
+        %dl
+          %dt
+            system_id
+          %dd
+            #{@inventory.system_id}
+          %dt
+            envoys
+          %dd
+            %dl
+              -@inventory.envoys.each do |item|
+                %dt
+                  sn
+                %dd
+                  #{item['sn']}
+          %dt
+            inverters
+          %dd
+            %table
+              %thead
+                %tr
+                  -@inventory.inverters[0].each_key do |key|
+                    %th
+                      #{key}
+              %tbody
+                -@inventory.inverters.each do |item|
+                  %tr
+                    -item.each_value do |v|
+                      %td
+                        #{v}
+    .large-8.columns
+      .panel
+        %h3
+          Today's stats:
+        %dl
+          %dt
+            system_id
+          %dd
+            #{@stats.system_id}
+          %dt
+            total_devices
+          %dd
+            #{@stats.total_devices}
+          %dt
+            intervals
+          %dd
+            %table
+              %thead
+                %tr
+                  -@stats.intervals[0].each_key do |key|
+                    %th
+                      #{key}
+              %tbody
+                -@stats.intervals.each do |item|
+                  %tr
+                    -item.each_pair do |k,v|
+                      %td
+                        #{(k=='end_at') ? Time.at(v.to_i).strftime('%Y-%m-%d %H:%M') : v}
+%pre
+  -#@system.stats(:start_at=>Time.new(Time.now.year,Time.now.month,Time.now.day), :end_at=>Time.now).to_yaml
+-#
+  %pre
+    =@system.monthly_production(:start_date=>1.month.ago).to_yaml
+  %pre
+    =@system.summary.to_yaml
+
+    =@system.envoys.to_yaml
+
+    =@system.inventory.to_yaml
+
+    =@system.monthly_production(:start_date=>1.year.ago).to_yaml
+
+

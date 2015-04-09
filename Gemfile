@@ -24,8 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'haml-rails'
-
-gem 'enlighten', :path =>'../enlighten'
+gem 'puma'
+gem 'enlighten'
 gem 'foundation-rails'
 gem 'chartkick'
 # Use ActiveModel has_secure_password

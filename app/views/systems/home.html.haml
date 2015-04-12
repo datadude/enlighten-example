@@ -10,7 +10,7 @@
         %h3
           System Summary:
         %dl
-          -@summary.each_pair do |k,v|
+          -@system.summary.each_pair do |k,v|
             %dt
               #{k}
             %dd
@@ -23,12 +23,12 @@
           %dt
             system_id
           %dd
-            #{@envoys.system_id}
+            #{@system.envoys.system_id}
           %dt
             envoys
           %dd
             %dl
-              -@envoys.envoys.each do |envoy|
+              -@system.envoys.envoys.each do |envoy|
                 -envoy.each_pair do |k,v|
                   %dt
                     #{k}
@@ -53,12 +53,12 @@
           %dt
             system_id
           %dd
-            #{@inventory.system_id}
+            #{@system.inventory.system_id}
           %dt
             envoys
           %dd
             %dl
-              -@inventory.envoys.each do |item|
+              -@system.inventory.envoys.each do |item|
                 %dt
                   sn
                 %dd
@@ -69,11 +69,11 @@
             %table
               %thead
                 %tr
-                  -@inventory.inverters[0].each_key do |key|
+                  -@system.inventory.inverters[0].each_key do |key|
                     %th
                       #{key}
               %tbody
-                -@inventory.inverters.each do |item|
+                -@system.inventory.inverters.each do |item|
                   %tr
                     -item.each_value do |v|
                       %td
@@ -105,19 +105,4 @@
                   %tr
                     -item.each_pair do |k,v|
                       %td
-                        #{(k=='end_at') ? Time.at(v.to_i).strftime('%Y-%m-%d %H:%M') : v}
-%pre
-  -#@system.stats(:start_at=>Time.new(Time.now.year,Time.now.month,Time.now.day), :end_at=>Time.now).to_yaml
--#
-  %pre
-    =@system.monthly_production(:start_date=>1.month.ago).to_yaml
-  %pre
-    =@system.summary.to_yaml
-
-    =@system.envoys.to_yaml
-
-    =@system.inventory.to_yaml
-
-    =@system.monthly_production(:start_date=>1.year.ago).to_yaml
-
-
+                        #{(k=='end_at') ? Time.at(v.to_i).localtime('-07:00').strftime('%Y-%m-%d %H:%M') : v}

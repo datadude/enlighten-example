@@ -1,9 +1,8 @@
 
 .enlighten
   .row
-    .small-12.columns
-      %h1
-        System Stats
+    &nbsp;
+  =render partial: 'shared/system_overview', locals: {title: "Data For: #{@system.system_name}", system: @system}
   .row
     .large-4.columns
       .panel

@@ -1,0 +1,13 @@
+.row
+  .small-12.columns
+    %h1
+      Enphase Systems:
+    -@systems.each do |system|
+      .panel
+        .row
+          .medium-4.columns
+            #{system['system_public_name']}
+          .medium-4.columns
+            #{system['city']}, #{system['state']}, #{system['country']},
+          .medium-4.columns
+            #{system['status']}

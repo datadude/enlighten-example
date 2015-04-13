@@ -24,7 +24,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'haml-rails'
-gem 'puma'
 gem 'enlighten'
 gem 'foundation-rails'
 gem 'chartkick'
@@ -40,6 +39,7 @@ gem 'chartkick'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'better_errors'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -48,6 +48,11 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
+
+
+  gem 'capybara'
+
+  gem 'guard-rspec', require: false
 
 end
 

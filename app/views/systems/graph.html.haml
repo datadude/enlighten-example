@@ -1,9 +1,8 @@
 = javascript_include_tag "//www.google.com/jsapi", "chartkick"
 .enlighten
   .row
-    .small-12.columns
-      %h1
-        Power Chart For Today
+    &nbsp;
+  =render partial: 'shared/system_overview', locals: {title: "Power Chart For: #{@system.system_name}", system: @system}
   .row
     .small-12.columns
       =area_chart(@intervals.map{|interval|[interval['end_at'],interval['powr']]})

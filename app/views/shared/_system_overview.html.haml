@@ -1,0 +1,20 @@
+.row
+  .small-12.columns
+    .panel
+      .row
+        .small-12.columns
+          %h2
+            #{title}
+      .row
+        .medium-6.columns
+          %dl
+            =dl_row('Public Name', system.system_public_name)
+            =dl_row('Status', system.status)
+            =dl_row('Connection Type', system.connection_type)
+            =dl_row('Other References', system.other_references.to_s)
+        .medium-6.columns
+          %h3
+            Location
+          =dl_row('City', "#{system.city}, #{system.state}, #{system.country}")
+          =dl_row('Postal Code', system.postal_code)
+          =dl_row('Time Zone', system.timezone)

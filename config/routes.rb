@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  get '/systems' => 'systems#index'
+  get '/systems' => 'systems#index', as: 'systems'
   root 'systems#index', as: :root
-  get '/systems/:action/:id' => 'systems'
-
+  get '/systems/show/:id' => 'systems#show', as: 'system_show'
+  get '/systems/graph/:id' => 'systems#graph', as: 'system_graph'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

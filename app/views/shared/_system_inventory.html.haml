@@ -1,0 +1,38 @@
+#inventory.panel
+  %h3
+    Inventory:
+  %dl
+    -if inventory
+      %dt
+        system_id
+      %dd
+        #{inventory.system_id}
+      %dt
+        envoys
+      %dd
+        %dl
+          -inventory.envoys.each do |item|
+            %dt
+              sn
+            %dd
+              #{item['sn']}
+      %dt
+        inverters
+      %dd
+        %table
+          %thead
+            %tr
+              -inventory.inverters[0].each_key do |key|
+                %th
+                  #{key}
+          %tbody
+            -inventory.inverters.each do |item|
+              %tr
+                -item.each_value do |v|
+                  %td
+                    #{v}
+    -else
+      %dt
+        No inventory is available for
+      %dd
+        #{system_name}

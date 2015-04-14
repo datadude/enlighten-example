@@ -5,4 +5,12 @@
   =render partial: 'shared/system_overview', locals: {title: "Power Chart For: #{@system.system_name}", system: @system}
   .row
     .small-12.columns
-      =area_chart(@intervals.map{|interval|[interval['end_at'],interval['powr']]})
+      -if @intervals && !@intervals.empty?
+        =area_chart(@intervals.map{|interval|[interval['end_at'],interval['powr']]})
+      -else
+        .panel
+          %dl
+            %dt
+              Stats are not available for
+            %dd
+              #{@system.system_public_name}

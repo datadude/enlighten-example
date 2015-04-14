@@ -1,0 +1,9 @@
+#production.panel
+  %h3
+    Monthly Production:
+  %dl
+    -production.each_pair do |k,v|
+      %dt
+        #{k}
+      %dd
+        #{v}

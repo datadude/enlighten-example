@@ -6,7 +6,7 @@
       .panel
         .row
           .medium-4.columns
-            #{system['system_public_name']}
+            =link_to system['system_public_name'], system_show_path(id: system['system_id'])
           .medium-4.columns
             #{system['city']}, #{system['state']}, #{system['country']},
           .medium-4.columns

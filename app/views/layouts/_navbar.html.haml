@@ -3,7 +3,7 @@
     / Title Area
     %li.name
       %h1
-        =page_link('Enphase Enlighten Data Browser',:systems,nil)
+        =page_link('Enphase Enlighten Data Browser',nil,:systems,nil)
     %li.toggle-topbar.menu-icon
       %a{:href => "#"}
         %span menu
@@ -12,10 +12,10 @@
     -unless params[:action] == 'index'
       %ul.right
         %li.divider
-          %li
-            = page_link('Stats', :systems, :show)
-          %li
-            = page_link('Power Graph', :systems, :graph)
+        %li
+          = page_link('Stats','', :systems, :show)
+        %li
+          = page_link('Power Graph','', :systems, :graph)
 
 / End Top Bar
 / End Navigation

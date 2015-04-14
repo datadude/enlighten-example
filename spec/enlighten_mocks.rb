@@ -13,6 +13,12 @@ def mock_system
     allow(system).to receive(k.to_sym).and_return(v)
   end
   system
+  end
+
+def mock_system_empty_stats
+  system = mock_system
+  allow(system).to receive(:stats).and_return OpenStruct.new(JSON.parse(load_fixture('stats_empty')))
+  system
 end
 
 

@@ -51,7 +51,7 @@ group :development, :test do
 
 
   gem 'capybara'
-
+  gem 'capybara-webkit'
   gem 'guard-rspec', require: false
 
 end

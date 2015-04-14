@@ -1,0 +1,33 @@
+#stats.panel
+  %h3
+    Today's stats:
+  %dl
+    -if stats && stats.intervals[0]
+      %dt
+        system_id
+      %dd
+        #{stats.system_id}
+      %dt
+        total_devices
+      %dd
+        #{stats.total_devices}
+      %dt
+        intervals
+      %dd
+        %table
+          %thead
+            %tr
+              -stats.intervals[0].each_key do |key|
+                %th
+                  #{key}
+          %tbody
+            -stats.intervals.each do |item|
+              %tr
+                -item.each_pair do |k,v|
+                  %td
+                    #{(k=='end_at') ? Time.at(v.to_i).localtime('-07:00').strftime('%Y-%m-%d %H:%M') : v}
+    -else
+      %dt
+        Stats are not available for
+      %dd
+        #{system_name}

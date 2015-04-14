@@ -2,106 +2,18 @@
 .enlighten
   .row
     &nbsp;
-  =render partial: 'shared/system_overview', locals: {title: "Data For: #{@system.system_name}", system: @system}
+  .row
+    .small-12.columns
+      =render partial: 'shared/system_overview', locals: {title: "Data For: #{@system.system_name}", system: @system}
   .row
     .large-4.columns
-      .panel
-        %h3
-          System Summary:
-        %dl
-          -@system.summary.each_pair do |k,v|
-            %dt
-              #{k}
-            %dd
-              #{v}
+      =render partial: 'shared/system_summary', locals: {summary: @system.summary}
     .large-4.columns
-      .panel
-        %h3
-          Envoys:
-        %dl
-          %dt
-            system_id
-          %dd
-            #{@system.envoys.system_id}
-          %dt
-            envoys
-          %dd
-            %dl
-              -@system.envoys.envoys.each do |envoy|
-                -envoy.each_pair do |k,v|
-                  %dt
-                    #{k}
-                  %dd
-                    #{v}
+      =render partial: 'shared/system_envoys', locals: {envoys: @system.envoys}
     .large-4.columns
-      .panel
-        %h3
-          Monthly Production:
-        %dl
-          -@production.each_pair do |k,v|
-            %dt
-              #{k}
-            %dd
-              #{v}
+      =render partial: 'shared/system_production', locals: {production: @production}
   .row
-    .large-4.columns
-      .panel
-        %h3
-          Inventory:
-        %dl
-          %dt
-            system_id
-          %dd
-            #{@system.inventory.system_id}
-          %dt
-            envoys
-          %dd
-            %dl
-              -@system.inventory.envoys.each do |item|
-                %dt
-                  sn
-                %dd
-                  #{item['sn']}
-          %dt
-            inverters
-          %dd
-            %table
-              %thead
-                %tr
-                  -@system.inventory.inverters[0].each_key do |key|
-                    %th
-                      #{key}
-              %tbody
-                -@system.inventory.inverters.each do |item|
-                  %tr
-                    -item.each_value do |v|
-                      %td
-                        #{v}
-    .large-8.columns
-      .panel
-        %h3
-          Today's stats:
-        %dl
-          %dt
-            system_id
-          %dd
-            #{@stats.system_id}
-          %dt
-            total_devices
-          %dd
-            #{@stats.total_devices}
-          %dt
-            intervals
-          %dd
-            %table
-              %thead
-                %tr
-                  -@stats.intervals[0].each_key do |key|
-                    %th
-                      #{key}
-              %tbody
-                -@stats.intervals.each do |item|
-                  %tr
-                    -item.each_pair do |k,v|
-                      %td
-                        #{(k=='end_at') ? Time.at(v.to_i).localtime('-07:00').strftime('%Y-%m-%d %H:%M') : v}
+    .medium-4.columns
+      =render partial: 'shared/system_inventory', locals: {system_name: @system.system_public_name, inventory: @inventory}
+    .medium-8.columns
+      =render partial: 'shared/system_stats', locals: {system_name: @system.system_public_name, stats: @stats}

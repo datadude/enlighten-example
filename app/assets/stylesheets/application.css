@@ -20,4 +20,4 @@
 .enlighten .panel dt:after{content: ': '; display: inline}
 .enlighten .panel dd{display: inline}
 .enlighten .panel dd:after{content: ' '; display: block}
-nav h1{color: white}
+nav h1{color: white;}

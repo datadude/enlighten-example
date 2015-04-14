@@ -1,0 +1,9 @@
+#summary.panel
+  %h3
+    System Summary:
+  %dl
+    -summary.each_pair do |k,v|
+      %dt
+        #{k}
+      %dd
+        #{v}

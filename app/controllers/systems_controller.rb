@@ -3,6 +3,7 @@ class SystemsController < ApplicationController
 
   def show
     @production = @system.monthly_production(:start_date=>1.month.ago - (3600*24))
+    @inventory = @system.inventory rescue nil
     start_time = Time.now
     @stats = @system.stats(:start_at=>Time.local(start_time.year,start_time.month,start_time.day,0,0), :end_at=>Time.now)
   end
